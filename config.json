@@ -2,13 +2,31 @@
   "name": "NWC Service Provider",
   "short_description": "A NWC service provider for LNbits",
   "tile": "/nwcprovider/static/image/nwcprovider.png",
-  "min_lnbits_version": "0.12.5",
+  "min_lnbits_version": "1.0.0",
   "contributors": [
     {
       "name": "Riccardo Balbo",
       "uri": "https://github.com/riccardobl",
+      "role": "Lead Dev"
+    },
+    {
+      "name": "Ben Arc",
+      "uri": "https://github.com/arcbtc",
       "role": "Dev"
     }
   ],
+  "images": [
+    {
+      "uri": "https://raw.githubusercontent.com/riccardobl/nwcprovider/main/static/image/1.png"
+    },
+    {
+      "uri": "https://raw.githubusercontent.com/riccardobl/nwcprovider/main/static/image/2.png"
+    },
+    {
+      "uri": "https://raw.githubusercontent.com/riccardobl/nwcprovider/main/static/image/3.png"
+    }
+  ],
+  "description_md": "https://raw.githubusercontent.com/riccardobl/nwcprovider/main/description.md",
+  "terms_and_conditions_md": "https://raw.githubusercontent.com/riccardobl/nwcprovider/main/toc.md",
   "license": "MIT"
 }
