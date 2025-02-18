@@ -29,8 +29,7 @@ def nwc_service_provider2():
     )
 
 
-@pytest.mark.asyncio
-async def test_supported_methods(nwc_service_provider):
+def test_supported_methods(nwc_service_provider):
     def make_invoice(provider, pubkey, content):
         return "invoice"
 
@@ -39,8 +38,7 @@ async def test_supported_methods(nwc_service_provider):
     assert s == ["make_invoice"]
 
 
-@pytest.mark.asyncio
-async def test_encrytdecrypt(nwc_service_provider, nwc_service_provider2):
+def test_encrytdecrypt(nwc_service_provider, nwc_service_provider2):
     content = "Hello World"
     expected_enc = "qVurNVISSl/9CfREIhk5Lg==?iv=QpCo5dI9gUcoLsSMLA7o7Q=="
     enc_a = nwc_service_provider._encrypt_content(
@@ -63,8 +61,7 @@ async def test_encrytdecrypt(nwc_service_provider, nwc_service_provider2):
     assert enc_b == expected_enc
 
 
-@pytest.mark.asyncio
-async def test_signverify(nwc_service_provider, nwc_service_provider2):
+def test_signverify(nwc_service_provider, nwc_service_provider2):
     # Random content
     content = ""
     for _ in range(100):

@@ -68,15 +68,17 @@ async def m003_default_config(db):
     """
     await db.execute(
         """
-        INSERT INTO nwcprovider.config (key, value) VALUES ('relay', 'nostrclient');
+        INSERT OR REPLACE INTO nwcprovider.config
+        (key, value) VALUES ('relay', 'nostrclient');
         """
     )
     new_private_key = bytes.hex(secp256k1._gen_private_key())
     await db.execute(
         """
-        INSERT INTO nwcprovider.config (key, value) VALUES ('provider_key', ?);
+        INSERT OR REPLACE INTO nwcprovider.config
+        (key, value) VALUES ('provider_key', :provider_key);
         """,
-        (new_private_key,),
+        {"provider_key": new_private_key},
     )
 
 
@@ -87,9 +89,10 @@ async def m004_default_config2(db):
 
     await db.execute(
         """
-        INSERT INTO nwcprovider.config (key, value) VALUES ('relay_alias', ?);
+        INSERT OR REPLACE INTO nwcprovider.config
+        (key, value) VALUES ('relay_alias', :value);
         """,
-        ("",),
+        {"value": ""},
     )
 
 

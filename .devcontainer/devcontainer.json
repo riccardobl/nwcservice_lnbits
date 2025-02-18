@@ -1,6 +1,6 @@
 {
   "name": "lnbits_nwc_provider",
-  "image": "mcr.microsoft.com/devcontainers/python:1-3.9-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12",
   "features": {
     "ghcr.io/devcontainers-contrib/features/poetry:2": {}
   },
@@ -14,7 +14,6 @@
   },
   "postCreateCommand": "/bin/bash /setup.sh ${containerWorkspaceFolder}",
   "postStartCommand": "/bin/bash /start-lnbits.sh",
-  "forwardPorts": [5000],
   "customizations": {
     "vscode": {
       "settings": {

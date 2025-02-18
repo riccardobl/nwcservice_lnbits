@@ -3,7 +3,7 @@ echo $PYTHONPATH
 CONTAINER_WORKSPACE_FOLDER=$1
 cd $CONTAINER_WORKSPACE_FOLDER
 sudo apt update -y
-sudo apt install -y python3.9-distutils curl
+sudo apt install -y curl
 sudo apt-get install -y docker.io
 
 curl -fsSL https://deb.nodesource.com/setup_20.x -o /tmp/nodesource_setup.sh
@@ -17,8 +17,8 @@ if [ ! -d ./lnbits ] ; then
 fi 
 cd lnbits
 echo $PWD
-git checkout 0.12.8 
-poetry env use python3.9
+git checkout v1.0.0-rc7
+poetry env use 3.12
 POETRY_PYTHON_PATH=$(poetry env info -p)/bin/python
 ln -sf $POETRY_PYTHON_PATH /home/vscode/python
 make bundle

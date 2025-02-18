@@ -14,6 +14,7 @@ from Cryptodome.Util.Padding import pad, unpad
 from lnbits.helpers import encrypt_internal_message
 from lnbits.settings import settings
 from loguru import logger
+from pydantic import BaseModel
 
 
 class RateLimit:
@@ -46,6 +47,9 @@ class MainSubscription:
         """
         if event_id not in self.responses:
             self.responses.append(event_id)
+
+    class Config:
+        arbitrary_types_allowed = True
 
 
 class NWCServiceProvider:
@@ -81,7 +85,7 @@ class NWCServiceProvider:
         self.request_listeners: Dict[
             str,
             Callable[
-                ["NWCServiceProvider", str, Dict],
+                [NWCServiceProvider, str, Dict],
                 Awaitable[List[Tuple[Optional[Dict], Optional[Dict], List]]],
             ],
         ] = {}
@@ -606,3 +610,6 @@ class NWCServiceProvider:
                 await self.ws.close()
         except Exception as e:
             logger.warning("Error closing websocket connection: " + str(e))
+
+    class Config:
+        arbitrary_types_allowed = True

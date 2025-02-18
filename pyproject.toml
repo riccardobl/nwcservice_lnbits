@@ -6,8 +6,8 @@ authors = ["Riccardo Balbo <oc@rblb.it>"]
 
 [tool.poetry.dependencies]
 python = "^3.10 | ^3.9"
-lnbits = "*"
-psycopg2-binary = "^2.9.9"
+lnbits = {version = "*", allow-prereleases = true}
+mypy = "^1.13.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.3.0"
@@ -16,27 +16,19 @@ pytest = "^7.3.2"
 mypy = "^1.5.1"
 pre-commit = "^3.2.2"
 ruff = "^0.3.2"
-types-cffi = "^1.16.0.20240331"
+pytest-md = "^0.2.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
-exclude = "(tests/*)"
-
 [[tool.mypy.overrides]]
 module = [
   "lnbits.*",
-  "lnurl.*",
   "loguru.*",
   "fastapi.*",
   "pydantic.*",
-  "pyqrcode.*",
-  "shortuuid.*",
-  "httpx.*",
-  "websocket.*",
-  "secp256k1.*",
 ]
 ignore_missing_imports = "True"
 
@@ -52,9 +44,7 @@ line-length = 88
 [tool.ruff]
 # Same as Black. + 10% rule of black
 line-length = 88
-# exclude = [
-#     "nostr",
-# ]
+
 
 [tool.ruff.lint]
 # Enable:
@@ -69,7 +59,8 @@ line-length = 88
 # RUF - ruff
 # B - bugbear
 select = ["F", "E", "W", "I", "A", "C", "N", "UP", "RUF", "B"]
-ignore = ["C901"]
+# UP007: pyupgrade: use X | Y instead of Optional. (python3.10)
+ignore = ["UP007"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
@@ -86,7 +77,7 @@ classmethod-decorators = [
 
 # Ignore unused imports in __init__.py files.
 # [tool.ruff.lint.extend-per-file-ignores]
-# "__init__.py" = ["F401", "F403"]
+# "views_api.py" = ["F401"]
 
 # [tool.ruff.lint.mccabe]
 # max-complexity = 10
